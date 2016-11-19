@@ -13,11 +13,12 @@ class Penjual extends Migration
      */
     public function up()
     {
-        Schema::create('Penjual', function (Blueprint $table) {
+        Schema::create('penjual', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nip');
+            $table->softDeletes();
 
-            $table->integer('id_user');
+            $table->integer('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users');
         });
     }
@@ -29,6 +30,6 @@ class Penjual extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Penjual');
+        Schema::dropIfExists('penjual');
     }
 }

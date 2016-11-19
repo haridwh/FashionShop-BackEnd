@@ -13,14 +13,15 @@ class Pembeli extends Migration
      */
     public function up()
     {
-        Schema::create('Pembeli', function (Blueprint $table) {
+        Schema::create('pembeli', function (Blueprint $table) {
             $table->increments('id');
             $table->string('jenis_kelamin');
             $table->string('tgl_lahir');
             $table->string('alamat');
             $table->string('nomor_tlp');
+            $table->softDeletes();
 
-            $table->integer('id_user');
+            $table->integer('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users');
         });
     }
@@ -32,6 +33,6 @@ class Pembeli extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Pembeli');
+        Schema::dropIfExists('pembeli');
     }
 }

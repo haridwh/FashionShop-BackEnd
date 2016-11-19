@@ -13,17 +13,18 @@ class DetailTransaksi extends Migration
      */
     public function up()
     {
-        Schema::create('DetailTransaksi', function (Blueprint $table) {
+        Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
             $table->string('jml');
             $table->double('harga');
+            $table->softDeletes();
 
-            $table->integer('id_transaksi');
-            $table->foreign('id_transaksi')->references('id')->on('Transaksi');
+            $table->integer('id_transaksi')->unsigned();
+            $table->foreign('id_transaksi')->references('id')->on('transaksi');
 
-            $table->integer('id_produk');
-            $table->foreign('id_produk')->references('id')->on('Produk');
+            $table->integer('id_produk')->unsigned();
+            $table->foreign('id_produk')->references('id')->on('produk');
         });
     }
 
@@ -34,6 +35,6 @@ class DetailTransaksi extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('DetailTransaksi');
+        Schema::dropIfExists('detail_transaksi');
     }
 }

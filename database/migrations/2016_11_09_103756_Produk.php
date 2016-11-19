@@ -13,7 +13,7 @@ class Produk extends Migration
      */
     public function up()
     {
-        Schema::create('Produk', function (Blueprint $table) {
+        Schema::create('produk', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
             $table->string('deskripsi');
@@ -21,6 +21,7 @@ class Produk extends Migration
             $table->integer('stok');
             $table->double('harga');
             $table->string('image_url');
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +32,6 @@ class Produk extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Produk');
+        Schema::dropIfExists('produk');
     }
 }

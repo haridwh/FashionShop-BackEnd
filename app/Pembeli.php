@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pembeli extends Model
 {
-    protected $table = 'Pembeli';
+    protected $table = 'pembeli';
     public $timestamps = false;
+
+    protected $fillable = ['jenis_kelamin', 'tgl_lahir', ' alamat', 'nomor_tlp'];
 }

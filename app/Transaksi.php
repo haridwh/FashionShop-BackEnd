@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaksi extends Model
 {
-    protected $table = 'Transaksi';
-    public $timestamps = true;
+    use SoftDeletes;
+
+    protected $table = 'transaksi';
+
+    protected $fillable = ['status', 'total', 'waktu', 'id_pembeli',];
 }

@@ -13,7 +13,7 @@ class Transaksi extends Migration
      */
     public function up()
     {
-        Schema::create('Transaksi', function (Blueprint $table) {
+        Schema::create('transaksi', function (Blueprint $table) {
             $table->increments('id');
             $table->string('status');
             $table->double('total');
@@ -21,8 +21,8 @@ class Transaksi extends Migration
             $table->softDeletes();
 
 
-            $table->integer('id_pembeli');
-            $table->foreign('id_pembeli')->references('id')->on('Pembeli');
+            $table->integer('id_pembeli')->unsigned();
+            $table->foreign('id_pembeli')->references('id')->on('pembeli');
         });
     }
 
@@ -33,6 +33,6 @@ class Transaksi extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Transaksi');
+        Schema::dropIfExists('transaksi');
     }
 }

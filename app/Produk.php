@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produk extends Model
 {
-    protected $table = 'Produk';
+    use SoftDeletes;
+
+    protected $table = 'produk';
     public $timestamps = false;
+
+    protected $fillable = ['nama','deskripsi','kategori','stok','harga','image_url',];
 }

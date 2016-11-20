@@ -10,7 +10,7 @@ class Transaksi extends Model
 
     protected $table = 'transaksi';
 
-    protected $fillable = ['status', 'total', 'waktu', 'id_pembeli',];
+    protected $fillable = ['status', 'total', 'waktu', 'id_pembeli'];
 
     public function pembeli(){
       return $this->belongsTo('App\Pembeli', 'id_pembeli');

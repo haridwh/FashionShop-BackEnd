@@ -23,6 +23,21 @@ class ControllerUsers extends BaseResController
       return $this->jsonResponse('SUCCESS_GET', 'OK', $users);
     }
 
+    public function registration(Request $request){
+      $user = new User();
+      $user->nama = $request->input('name');
+      $user->email = $request->input('email');
+      $user->uname = $request->input('uname');
+      $user->upass = $request->input('upass');
+      $user->save();
+      $user->pembeli()->jenis_kelamin = $request->input('jenis_kelamin');
+      $user->pembeli()->tgl_lahir = $request->input('tgl_lahir');
+      $user->pembeli()->alamat = $request->input('alamat');
+      $user->pembeli()->nomor_tlp = $request->input('nomor_tlp');
+      $user->pembeli()->id_user = $user->id;
+      $user->pembeli()->save();
+    }
+
     public function search(){
     	$Users = User::where('id',$id)->first();
     	return $Users;

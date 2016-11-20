@@ -11,7 +11,7 @@ class Produk extends Model
     protected $table = 'produk';
     public $timestamps = false;
 
-    protected $fillable = ['nama','deskripsi','kategori','stok','harga','image_url',];
+    protected $fillable = ['nama','deskripsi','kategori','stok','harga','image_url'];
 
     // public function transaksi(){
     //   return $this->belongsToMany('App\Transaksi','detail_transaksi','id_transaksi','id_produk');

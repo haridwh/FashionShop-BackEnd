@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Penjual;
 
-class ControllerPenjual extends Controller
+class ControllerPenjual extends BaseResController
 {
     public function RegistrasiPenjual(Request $request){
     	$Penjual = new Penjual();

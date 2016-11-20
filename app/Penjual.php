@@ -12,4 +12,8 @@ class Penjual extends Model
     public $timestamps = false;
 
     protected $fillable = ['nip','id_user',];
+
+    public function user(){
+      return $this->belongsTo('App\User', 'id_user');
+    }
 }

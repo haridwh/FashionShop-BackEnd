@@ -5,47 +5,61 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Produk;
 
-class ControllerProduk extends Controller
+class ControllerProduk extends BaseResController
 {
-    public function TambahProduk(Request $request){
-    	$Produk = new Produk();
-    	$Produk->nama = $request->input('nama');
-    	$Produk->deskripsi = $request->input('deskripsi');
-    	$Produk->kategori = $request->input('kategori');
-    	$Produk->stok = $request->input('stok');
-    	$Produk->harga = $request->input('harga');
-    	$Produk->image_url = $request->input('image_url');
-    	$Produk->save();
 
-    	return redirect('UIProduk');//buat diroutes buat ngakses diwebnya nnti
+    public function getAllProduk(){
+      $produk = Produk::all();
+      return $this->jsonResponse('SUCCESS_GET', 'OK', $produk);
     }
 
-    public function readAll(){
-    	$Produk = Produk::all();
+    public function getDetailProduk($id){
+      $produk = Produk::find($id);
+      if ($produk == null) {
+        return $this->jsonResponse('FAILURE_GET', $id.' NOT FOUND', null);
+      }
+      return $this->jsonResponse('SUCCESS_GET','OK',$produk);
     }
 
-    public function search(){
-    	$Produk = Produk::where([['nama','=',$nama],['kategori','=',$kategori]])->first();
-    	return $Produk;
+    public function tambahProduk(Request $request){
+       $produk = new Produk();
+       $produk->nama = $request->input('nama');
+       $produk->deskrpsi = $request->input('deskrpsi');
+       $produk->kategori = $request->input('kategori');
+       $produk->stok = $request->input('stok');
+       $produk->harga = $request->input('harga');
+       $produk->image_url = $request->input('image_url');
+       $produk->save();
+       return $this->jsonResponse('SUCCESS_POST','OK',null);
     }
 
-    public function updateProduk(Request $request,$id){
-    	$Produk = $Produk::where('id',$request->input('id'));
-    	$Produk->nama = $request->input('nama');
-    	$Produk->deskripsi = $request->input('deskripsi');
-		$Produk->kategori = $request->input('kategori');
-    	$Produk->stok = $request->input('stok');
-    	$Produk->harga = $request->input('harga');
-    	$Produk->image_url = $request->input('image_url');
-    	$Produk->save();   
+    public function updateStok(Request $request, $id){
+      $produk = Produk::find($id);
+      if ($produk == null) {
+        return $this->jsonResponse('FAILURE_GET', $id.' NOT FOUND',$produk);
+      }
+      $produk->stok = $request->input('stok');
+      $produk->save();
+      return $this->jsonResponse('SUCCESS_POST','OK',null);
+    }
 
-    	return redirect('UIProduk'); 	
+    public function updateProduk(Request $request, $id){
+    	$produk = $Produk::find($id);
+      if ($produk == null) {
+        return $this->jsonResponse('FAILURE_GET', $id.' NOT FOUND',$produk);
+      }
+    	$produk->nama = $request->input('nama');
+    	$produk->deskripsi = $request->input('deskripsi');
+		  $produk->kategori = $request->input('kategori');
+    	$produk->stok = $request->input('stok');
+    	$produk->harga = $request->input('harga');
+    	$produk->image_url = $request->input('image_url');
+    	$produk->save();
+    	return $this->jsonResponse('SUCCESS_POST','OK',null);
     }
 
     public function deleteProduk ($id){
-    	$Produk = Produk::where('id',$id);
-    	$Produk->delete();
-
-    	return redirect('UIProduk'); 
+    	Produk::destroy($id);
+    	return $this->jsonResponse('SUCCESS_POST','OK',null);
     }
 }

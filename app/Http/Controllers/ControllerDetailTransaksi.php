@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DetailTransaksi;
 
-class ControllerDetailTransaksi extends Controller
+class ControllerDetailTransaksi extends BaseResController
 {
     public function create(Request $request){
       $detailTransaksi = new DetailTransaksi();

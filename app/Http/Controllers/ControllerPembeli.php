@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ControllerPembeli extends Controller
+class ControllerPembeli extends BaseResController
 {
     public function RegistrasiPembeli(Request $request){
     	$Pembeli = new Pembeli();

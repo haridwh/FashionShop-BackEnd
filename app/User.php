@@ -27,4 +27,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function penjual(){
+      return $this->hasOne('App\Penjual','id_user');
+    }
+
+    public function pembeli(){
+      return $this->hasOne('App\Pembeli','id_user');
+    }
 }

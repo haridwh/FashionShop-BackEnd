@@ -24,11 +24,11 @@ class ControllerProduk extends BaseResController
     public function tambahProduk(Request $request){
        $produk = new Produk();
        $produk->nama = $request->input('nama');
-       $produk->deskrpsi = $request->input('deskrpsi');
+       $produk->deskripsi = $request->input('deskripsi');
        $produk->kategori = $request->input('kategori');
        $produk->stok = $request->input('stok');
        $produk->harga = $request->input('harga');
-       $produk->image_url = $request->input('image_url');
+//       $produk->image_url = $request->input('image_url');
        $produk->save();
        return $this->jsonResponse('SUCCESS_POST','OK',null);
     }
@@ -38,7 +38,7 @@ class ControllerProduk extends BaseResController
       if ($produk == null) {
         return $this->jsonResponse('FAILURE_GET', $id.' NOT FOUND',$produk);
       }
-      $produk->stok = $request->input('stok');
+      $produk->stok += $request->input('stok');
       $produk->save();
       return $this->jsonResponse('SUCCESS_POST','OK',null);
     }
@@ -60,6 +60,6 @@ class ControllerProduk extends BaseResController
 
     public function deleteProduk ($id){
     	Produk::destroy($id);
-    	return $this->jsonResponse('SUCCESS_POST','OK',null);
+    	return $this->jsonResponse('SUCCESS_DELETE','OK',null);
     }
 }

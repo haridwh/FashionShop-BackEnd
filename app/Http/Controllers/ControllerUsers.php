@@ -24,12 +24,12 @@ class ControllerUsers extends BaseResController
 
     public function registrationPembeli(Request $request){
       $user = new User();
-      $user->nama = $request->input('name');
+      $user->name = $request->input('name');
       $user->email = $request->input('email');
       $user->uname = $request->input('uname');
       $user->upass = $request->input('upass');
       $user->type = $request->input('type');
-      $user->image_url = $request->input('image_url');
+      //$user->image_url = $request->input('image_url');
       $user->save();
       if (User::find($user->id)) {
         $pembeli = new Pembeli();
@@ -49,15 +49,16 @@ class ControllerUsers extends BaseResController
 
     public function registrationPenjual(Request $request){
       $user = new User();
-      $user->nama = $request->input('name');
+      $user->name = $request->input('name');
       $user->email = $request->input('email');
       $user->uname = $request->input('uname');
       $user->upass = $request->input('upass');
+      $user->type = $request->input('type');
       $user->save();
       if (User::find($user->id)) {
         $penjual = new Penjual();
         $penjual->nip = $request->input('nip');
-        $penjual->id_user = $request = $user->$id;
+        $penjual->id_user = $user->id;
         $penjual->save();
         if (Penjual::find($penjual->id)) {
           return $this->jsonResponse('SUCCESS_POST','SUCCESS REGISTRATION',null);

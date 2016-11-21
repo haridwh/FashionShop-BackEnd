@@ -11,6 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix'=>'api', 'middleware'=>'cors'], function(){
+
+  Route::group(['middleware' => 'jwt.auth'], function(){
+
+  });
+  //Produk
+  Route::get('/produk', 'ControllerProduk@getAllProduk');
+  Route::get('/produk/{id}', 'ControllerProduk@getDetailProduk');
+  Route::post('/produk', 'ControllerProduk@tambahProduk');
+  Route::put('/produk/updateStok/{id}', 'ControllerProduk@updateStok');
+  Route::put('/produk/updateProduk/{id}', 'ControllerProduk@updateProduk');
+  Route::delete('/produk/{id}', 'ControllerProduk@deleteProduk');
+
+  //User
+  Route::get('/user', 'ControllerUsers@getAllUser');
+  Route::get('/user/{id}', 'ControllerUsers@getDetailUser');
+  Route::post('/registrasiPenjual', 'ControllerUsers@registrationPenjual');
+  Route::post('/registrationPembeli', 'ControllerUsers@registrationPembeli');
+
+  //Transaksi
+
 });

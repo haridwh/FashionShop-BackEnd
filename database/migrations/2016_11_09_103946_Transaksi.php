@@ -18,7 +18,7 @@ class Transaksi extends Migration
             $table->string('status');
             $table->double('total');
             $table->timestamp('waktu');
-            $table->softDeletes();
+            // $table->softDeletes();
 
 
             $table->integer('id_pembeli')->unsigned();

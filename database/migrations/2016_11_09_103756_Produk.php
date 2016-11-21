@@ -21,7 +21,7 @@ class Produk extends Migration
             $table->integer('stok');
             $table->double('harga');
             $table->string('image_url');
-            $table->softDeletes();
+            // $table->softDeletes();
         });
     }
 

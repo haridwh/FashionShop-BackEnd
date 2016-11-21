@@ -19,10 +19,10 @@ class Pembeli extends Migration
             $table->string('tgl_lahir');
             $table->string('alamat');
             $table->string('nomor_tlp');
-            $table->softDeletes();
+            // $table->softDeletes();
 
             $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

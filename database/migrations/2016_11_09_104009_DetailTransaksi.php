@@ -18,13 +18,13 @@ class DetailTransaksi extends Migration
             $table->string('nama');
             $table->string('jml');
             $table->double('harga');
-            $table->softDeletes();
+            // $table->softDeletes();
 
             $table->integer('id_transaksi')->unsigned();
-            $table->foreign('id_transaksi')->references('id')->on('transaksi');
+            $table->foreign('id_transaksi')->references('id')->on('transaksi')->onDelete('cascade');
 
             $table->integer('id_produk')->unsigned();
-            $table->foreign('id_produk')->references('id')->on('produk');
+            $table->foreign('id_produk')->references('id')->on('produk')->onDelete('cascade');
         });
     }
 

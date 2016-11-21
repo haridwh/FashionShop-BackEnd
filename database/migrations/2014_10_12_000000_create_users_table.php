@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('uname');
             $table->string('upass');
             $table->string('name');
-            $table->softDeletes();            
+            // $table->softDeletes();            
         });
     }
 

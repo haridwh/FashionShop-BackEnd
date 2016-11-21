@@ -16,10 +16,10 @@ class Penjual extends Migration
         Schema::create('penjual', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nip');
-            $table->softDeletes();
+            // $table->softDeletes();
 
             $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

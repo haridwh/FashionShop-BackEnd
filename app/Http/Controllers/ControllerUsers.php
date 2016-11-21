@@ -28,6 +28,8 @@ class ControllerUsers extends BaseResController
       $user->email = $request->input('email');
       $user->uname = $request->input('uname');
       $user->upass = $request->input('upass');
+      $user->type = $request->input('type');
+      $user->image_url = $request->input('image_url');
       $user->save();
       if (User::find($user->id)) {
         $pembeli = new Pembeli();

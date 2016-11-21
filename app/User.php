@@ -8,14 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-    use SoftDeletes;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'uname', 'upass'];
+    protected $fillable = ['name', 'email', 'uname', 'upass', 'type', 'image_url'];
 
     /**
      * The attributes that should be hidden for arrays.

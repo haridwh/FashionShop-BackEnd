@@ -21,7 +21,7 @@ class ControllerTransaksi extends BaseResController
       }
       $transaksi = new Transaksi();
       $transaksi->status = 'cart';
-      $transaksi->total = $request->input('total');
+      $transaksi->total = 0;
       $transaksi->waktu = date("Y/m/d H:i:s");
       $transaksi->id_pembeli = $request->input('id_pembeli');
       $transaksi->save();
@@ -40,6 +40,10 @@ class ControllerTransaksi extends BaseResController
       $detailTransaksi->id_transaksi = $id;
       $detailTransaksi->id_produk = $request->input('id_produk');
       $detailTransaksi->save();
+
+      $transaksi = Transaksi::find($idCart);
+      $transaksi->total = $Transaksi->total+ ($detailTransaksi->jml * $detailTransaksi->harga);
+      $transaksi->save();
       if (DetailTransaksi::find($id)) {
           return $this->jsonResponse('SUCCESS_POST', 'OK', null);
       }
@@ -67,7 +71,7 @@ class ControllerTransaksi extends BaseResController
       return $this->jsonResponse('SUCCESS_UPDATE', 'OK', null);
     }
 
-    public function delete($id){
+    public function deleteTransaksi($id){
       $transaksi = Transaksi::find($id);
       if ($transaksi == null) {
         return $this->jsonResponse('FAILED_DELETE', $id.' NOT FOUND', null);

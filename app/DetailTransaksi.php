@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetailTransaksi extends Model
 {
-    use SoftDeletes;
-
     protected $table = 'detail_transaksi';
     public $timestamps = false;
 

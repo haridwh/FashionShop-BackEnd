@@ -7,20 +7,25 @@ use App\DetailTransaksi;
 
 class ControllerDetailTransaksi extends BaseResController
 {
-    public function create(Request $request){
-      $detailTransaksi = new DetailTransaksi();
-      $detailTransaksi->nama = $request->input('nama');
-      $detailTransaksi->jml = $request->input('jml');
-      $detailTransaksi->harga = $request->input('harga');
-      $detailTransaksi->waktu = $date("Y/m/d H:i:sa");
-      $detailTransaksi->id_transaksi = $request->input('id_transaksi');
-      $detailTransaksi->id_produk = $request->input('id_produk');
-      $detailTransaksi->save();
-    }
 
-    public function readAll(){
+    public function getAllDetailTransaksi(){
       $detailTransaksi = new DetailTransaksi::all();
-      return view('viewDetailTransaksi',['listDetailTransaksi' => $detailTransaksi]);
+      return $this->jsonResponse('SUCCESS_GET', 'OK', $detailTransaksi);
     }
 
+    public function getDetailTransaksi($id){
+      $detailTransaksi = DetailTransaksi::find($id);
+      if ($detailTransaksi == null) {
+        return $this->jsonResponse('FAILED_GET', $id.' NOT FOUND', null);
+      }
+      return $this->jsonResponse('SUCCESS_GET', 'OK', $detailTransaksi);
+    }
+
+    public function deleteDetailTransaksi($id){
+      $detailTransaksi = DetailTransaksi::find($id);
+      if ($detailTransaksi == null) {
+        return $this->jsonResponse('FAILED_GET', $id.' NOT FOUND', null);
+      }
+      $detailTransaksi->delete();
+    }
 }

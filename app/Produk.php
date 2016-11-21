@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produk extends Model
 {
-    use SoftDeletes;
-
     protected $table = 'produk';
     public $timestamps = false;
 

@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Penjual;
+use App\User;
 
 class ControllerPenjual extends BaseResController
 {
-    public function RegistrasiPenjual(Request $request){
-    	$Penjual = new Penjual();
-    	$Penjual->id_user = $request->input('id_user');
-    	$Penjual->nip = $request->input('nip');
-    	$Penjual->save();
+    // public function updatePenjual( Request $request, $id){
+    //   $penjual = Penjual::find($id);
+    //   if ($penjual == null) {
+    //     return $this->jsonResponse('FAILED_UPDATE', $id.' NOT FOUND', null);
+    //   }
+    //
+    //   return $this->jsonResponse('SUCCESS_UPDATE', $id.' NOT FOUND', null)
+    // }
 
-    return redirect('UIPenjual');//buat diroutes buat ngakses diwebnya nnti
-    }
+
 
 }

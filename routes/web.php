@@ -16,6 +16,10 @@ Route::group(['prefix'=>'api', 'middleware'=>'cors'], function(){
   Route::group(['middleware' => 'jwt.auth'], function(){
 
   });
+
+  //login
+  Route::post('/getToken','AuthController@login');
+
   //Produk
   Route::get('/produk', 'ControllerProduk@getAllProduk');
   Route::get('/produk/{id}', 'ControllerProduk@getDetailProduk');
@@ -31,5 +35,9 @@ Route::group(['prefix'=>'api', 'middleware'=>'cors'], function(){
   Route::post('/registrationPembeli', 'ControllerUsers@registrationPembeli');
 
   //Transaksi
-
+  Route::get('/transaksi', 'ControllerTransaksi@getAllTransaksi');
+  Route::post('/masukKeranjang', 'ControllerTransaksi@createCart');
+  Route::put('/createTransaksi', 'ControllerTransaksi@createTransaksi');
+  Route::put('/transaksi/verified/{id}', 'ControllerTransaksi@verified');
+  Route::delete('/transaksi/{id}', 'ControllerTransaksi@deleteTransaksi');
 });

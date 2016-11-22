@@ -27,7 +27,7 @@ class ControllerUsers extends BaseResController
       $user->name = $request->input('name');
       $user->email = $request->input('email');
       $user->uname = $request->input('uname');
-      $user->upass = $request->input('upass');
+      $user->password = bcrypt($request->input('upass'));
       $user->type = $request->input('type');
       //$user->image_url = $request->input('image_url');
       $user->save();
@@ -52,7 +52,7 @@ class ControllerUsers extends BaseResController
       $user->name = $request->input('name');
       $user->email = $request->input('email');
       $user->uname = $request->input('uname');
-      $user->upass = $request->input('upass');
+      $user->password = bcrypt($request->input('upass'));
       $user->type = $request->input('type');
       $user->save();
       if (User::find($user->id)) {

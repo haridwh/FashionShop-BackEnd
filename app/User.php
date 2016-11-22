@@ -15,7 +15,7 @@ class User extends Authenticatable
      */
 
     public $timestamps = false;
-    protected $fillable = ['name', 'email', 'uname', 'upass', 'type', 'image_url'];
+    protected $fillable = ['name', 'email', 'uname', 'password', 'type', 'image_url'];
 
     /**
      * The attributes that should be hidden for arrays.

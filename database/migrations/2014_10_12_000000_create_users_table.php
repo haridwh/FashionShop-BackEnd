@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('uname')->unique();
-            $table->string('upass');
+            $table->string('password');
             $table->string('type');
             $table->string('image_url');
             // $table->softDeletes();

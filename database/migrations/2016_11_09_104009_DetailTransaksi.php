@@ -15,9 +15,7 @@ class DetailTransaksi extends Migration
     {
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama');
             $table->string('jml');
-            $table->double('harga');
             // $table->softDeletes();
 
             $table->integer('id_transaksi')->unsigned();

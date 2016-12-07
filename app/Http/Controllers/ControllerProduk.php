@@ -82,7 +82,7 @@ class ControllerProduk extends BaseResController
       $fileName = $id.'.'.$request->file('image')->guessExtension();
       $request->file('image')->move(public_path('/imageProduct'),$fileName);
       $transaksi = Transaksi::find($id);
-      $transaksi->image_url = $fileName;
+      $transaksi->struk_url = $fileName;
       $transaksi->save();
 
       return $this->jsonResponse('SUCCESS_POST','OK',null);     

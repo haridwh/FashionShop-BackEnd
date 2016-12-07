@@ -8,15 +8,10 @@ use App\DetailTransaksi;
 class ControllerDetailTransaksi extends BaseResController
 {
 
-    public function getAllDetailTransaksi(){
-      $detailTransaksi = new DetailTransaksi::all();
-      return $this->jsonResponse('SUCCESS_GET', 'OK', $detailTransaksi);
-    }
+    public function getAllDetailTransaksi($id){
+      $detailTransaksi = DetailTransaksi::where('id_transaksi',$id)->get();
+      for ($i=0; $i < $detailTransaksi; $i++) {
 
-    public function getDetailTransaksi($id){
-      $detailTransaksi = DetailTransaksi::find($id);
-      if ($detailTransaksi == null) {
-        return $this->jsonResponse('FAILED_GET', $id.' NOT FOUND', null);
       }
       return $this->jsonResponse('SUCCESS_GET', 'OK', $detailTransaksi);
     }

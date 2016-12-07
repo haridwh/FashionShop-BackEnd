@@ -9,8 +9,18 @@ use App\Produk;
 
 class ControllerTransaksi extends BaseResController
 {
-    public function getAllTransaksi(){
-      $transaksi = Transaksi::all();
+    public function getAllVerify(){
+      $transaksi = Transaksi::where([['status','<>','cart'],['status','<>','verified']])->get();
+      return $this->jsonResponse('SUCCESS_GET', 'OK', $transaksi);
+    }
+
+    public function getAllDelivery(){
+      $transaksi = Transaksi::where('status','verified')->get();
+      return $this->jsonResponse('SUCCESS_GET','OK',$transaksi);
+    }
+
+    public function getAllTransaksiByID($id){
+      $transaksi = Transaksi::where('id_pembeli',$id)->get();
       return $this->jsonResponse('SUCCESS_GET', 'OK', $transaksi);
     }
 
@@ -36,7 +46,7 @@ class ControllerTransaksi extends BaseResController
     }
 
     public function createCart(Request $request){
-      $transaksi = Transaksi::where('status','cart')->first();
+      $transaksi = Transaksi::where([['status','=','cart'],['id_pembeli','=',$request->input('id_pembeli')]])->first();
       if ($transaksi != null) {
         return $this->insertDetail($transaksi->id, $request);
       }
@@ -52,8 +62,8 @@ class ControllerTransaksi extends BaseResController
       return $this->jsonResponse('FAILED_POST', 'FAILED INSERT TRANSAKSI', null);
     }
 
-    public function createTransaksi(){
-      $transaksi = Transaksi::where('status','cart')->first();
+    public function createTransaksi($id){
+      $transaksi = Transaksi::where([['status','=','cart'],['id_pembeli','=',$id]])->first();
       if ($transaksi == null) {
         return $this->jsonResponse('FAILED_UPDATE', $id.' NOT FOUND', null);
       }

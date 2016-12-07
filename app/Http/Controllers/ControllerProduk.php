@@ -30,6 +30,13 @@ class ControllerProduk extends BaseResController
        $produk->harga = $request->input('harga');
 //       $produk->image_url = $request->input('image_url');
        $produk->save();
+
+      //  $id = $produk->id;
+      //  $fileName = $id.'.'.$request->file('image')->guessExtension();
+      //  $request->file('image')->move(public_path('/imageProduct'),$fileName);
+      //  $produk->image_url = $fileName;
+      //  $produk->save();
+
        return $this->jsonResponse('SUCCESS_POST','OK',null);
     }
 
@@ -44,7 +51,7 @@ class ControllerProduk extends BaseResController
     }
 
     public function updateProduk(Request $request, $id){
-    	$produk = $Produk::find($id);
+    	$produk = Produk::find($id);
       if ($produk == null) {
         return $this->jsonResponse('FAILURE_GET', $id.' NOT FOUND',$produk);
       }
@@ -53,7 +60,7 @@ class ControllerProduk extends BaseResController
 		  $produk->kategori = $request->input('kategori');
     	$produk->stok = $request->input('stok');
     	$produk->harga = $request->input('harga');
-    	$produk->image_url = $request->input('image_url');
+    	//$produk->image_url = $request->input('image_url');
     	$produk->save();
     	return $this->jsonResponse('SUCCESS_POST','OK',null);
     }

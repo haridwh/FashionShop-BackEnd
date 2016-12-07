@@ -35,9 +35,15 @@ Route::group(['prefix'=>'api', 'middleware'=>'cors'], function(){
   Route::post('/registrationPembeli', 'ControllerUsers@registrationPembeli');
 
   //Transaksi
-  Route::get('/transaksi', 'ControllerTransaksi@getAllTransaksi');
+  Route::get('/transaksi', 'ControllerTransaksi@getAllVerify');
+  Route::get('/transaksi/delivery', 'ControllerTransaksi@getAllDelivery');
+  Route::get('/transaksi/{id}', 'ControllerTransaksi@getAllTransaksiByID');
   Route::post('/masukKeranjang', 'ControllerTransaksi@createCart');
-  Route::put('/createTransaksi', 'ControllerTransaksi@createTransaksi');
+  Route::put('/createTransaksi/{id}', 'ControllerTransaksi@createTransaksi');
   Route::put('/transaksi/verified/{id}', 'ControllerTransaksi@verified');
   Route::delete('/transaksi/{id}', 'ControllerTransaksi@deleteTransaksi');
+
+  //DetailTransaksi
+  Route::get('transaksi/detail/{id}', 'ControllerDetailTransaksi@getAllDetailTransaksi');
+  Route::get('detailTransaksi/{id}', 'ControllerDetailTransaksi@getAllDetailTransaksi');
 });

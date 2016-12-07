@@ -28,7 +28,6 @@ class ControllerProduk extends BaseResController
        $produk->kategori = $request->input('kategori');
        $produk->stok = $request->input('stok');
        $produk->harga = $request->input('harga');
-//       $produk->image_url = $request->input('image_url');
        $produk->save();
 
        $id = $produk->id;

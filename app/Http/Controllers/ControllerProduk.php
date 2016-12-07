@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Produk;
+use App\Transaksi;
 
 class ControllerProduk extends BaseResController
 {
@@ -74,6 +75,17 @@ class ControllerProduk extends BaseResController
       $produk->save();
 
       return $this->jsonResponse('SUCCESS_POST','OK',null); 
+    }
+
+    public function uploadStruk(Request $request, $id)
+    {
+      $fileName = $id.'.'.$request->file('image')->guessExtension();
+      $request->file('image')->move(public_path('/imageProduct'),$fileName);
+      $transaksi = Transaksi::find($id);
+      $transaksi->image_url = $fileName;
+      $transaksi->save();
+
+      return $this->jsonResponse('SUCCESS_POST','OK',null);     
     }
 
     public function deleteProduk ($id){

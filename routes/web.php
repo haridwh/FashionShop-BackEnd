@@ -27,6 +27,7 @@ Route::group(['prefix'=>'api', 'middleware'=>'cors'], function(){
   Route::put('/produk/updateStok/{id}', 'ControllerProduk@updateStok');
   Route::put('/produk/updateProduk/{id}', 'ControllerProduk@updateProduk');
   Route::post('/produk/updateImage/{id}', 'ControllerProduk@updateImage');
+  Route::post('/produk/uploadStruk/{id}', 'ControllerProduk@uploadStruk');
   Route::delete('/produk/{id}', 'ControllerProduk@deleteProduk');
 
   //User

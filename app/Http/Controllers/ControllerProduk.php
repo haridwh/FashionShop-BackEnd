@@ -64,6 +64,17 @@ class ControllerProduk extends BaseResController
     	return $this->jsonResponse('SUCCESS_POST','OK',null);
     }
 
+    public function updateImage(Request $request, $id)
+    {
+      $fileName = $id.'.'.$request->file('image')->guessExtension();
+      $request->file('image')->move(public_path('/imageProduct'),$fileName);
+      $produk::find($id);
+      $produk->image_url = $fileName;
+      $produk->save();
+
+      return $this->jsonResponse('SUCCESS_POST','OK',null); 
+    }
+
     public function deleteProduk ($id){
     	Produk::destroy($id);
     	return $this->jsonResponse('SUCCESS_DELETE','OK',null);

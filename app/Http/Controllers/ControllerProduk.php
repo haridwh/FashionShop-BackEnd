@@ -80,7 +80,7 @@ class ControllerProduk extends BaseResController
     public function uploadStruk(Request $request, $id)
     {
       $fileName = $id.'.'.$request->file('image')->guessExtension();
-      $request->file('image')->move(public_path('/imageProduct'),$fileName);
+      $request->file('image')->move(public_path('/imageStruk'),$fileName);
       $transaksi = Transaksi::find($id);
       $transaksi->struk_url = $fileName;
       $transaksi->save();

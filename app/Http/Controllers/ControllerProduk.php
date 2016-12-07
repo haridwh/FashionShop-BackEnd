@@ -31,11 +31,11 @@ class ControllerProduk extends BaseResController
 //       $produk->image_url = $request->input('image_url');
        $produk->save();
 
-      //  $id = $produk->id;
-      //  $fileName = $id.'.'.$request->file('image')->guessExtension();
-      //  $request->file('image')->move(public_path('/imageProduct'),$fileName);
-      //  $produk->image_url = $fileName;
-      //  $produk->save();
+       $id = $produk->id;
+       $fileName = $id.'.'.$request->file('image')->guessExtension();
+       $request->file('image')->move(public_path('/imageProduct'),$fileName);
+       $produk->image_url = $fileName;
+       $produk->save();
 
        return $this->jsonResponse('SUCCESS_POST','OK',null);
     }

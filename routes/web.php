@@ -41,6 +41,7 @@ Route::group(['prefix'=>'api', 'middleware'=>'cors'], function(){
   Route::post('/masukKeranjang', 'ControllerTransaksi@createCart');
   Route::put('/createTransaksi/{id}', 'ControllerTransaksi@createTransaksi');
   Route::put('/transaksi/verified/{id}', 'ControllerTransaksi@verified');
+  Route::put('/transaksi/arrived/{id}', 'ControllerTransaksi@arrived');
   Route::delete('/transaksi/{id}', 'ControllerTransaksi@deleteTransaksi');
 
   //DetailTransaksi

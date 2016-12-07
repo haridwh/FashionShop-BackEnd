@@ -82,6 +82,16 @@ class ControllerTransaksi extends BaseResController
       return $this->jsonResponse('SUCCESS_UPDATE', 'OK', null);
     }
 
+    public function arrived($id){
+      $transaksi = Transaksi::find($id);
+      if ($transaksi == null) {
+        return $this->jsonResponse('FAILED_UPDATE', $id.' NOT FOUND', null);
+      }
+      $transaksi->status = 'arrived';
+      $transaksi->save();
+      return $this->jsonResponse('SUCCESS_UPDATE', 'OK', null);
+    }
+
     public function deleteTransaksi($id){
       $transaksi = Transaksi::find($id);
       if ($transaksi == null) {

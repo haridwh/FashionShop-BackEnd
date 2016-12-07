@@ -11,7 +11,7 @@ class ControllerDetailTransaksi extends BaseResController
     public function getAllDetailTransaksi($id){
       $detailTransaksi = DetailTransaksi::where('id_transaksi',$id)->get();
       for ($i=0; $i < $detailTransaksi; $i++) {
-
+        
       }
       return $this->jsonResponse('SUCCESS_GET', 'OK', $detailTransaksi);
     }

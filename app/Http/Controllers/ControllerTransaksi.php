@@ -19,9 +19,19 @@ class ControllerTransaksi extends BaseResController
       return $this->jsonResponse('SUCCESS_GET','OK',$transaksi);
     }
 
+    public function getCart(){
+      $cart = Transaksi::where('status','cart')->get();
+      return $this->jsonResponse('SUCCESS_GET','OK',$cart);
+    }
+
     public function getAllTransaksiByID($id){
       $transaksi = Transaksi::where('id_pembeli',$id)->get();
       return $this->jsonResponse('SUCCESS_GET', 'OK', $transaksi);
+    }
+
+    public function getAllDetailTransaksi($id){
+      $detailTransaksi = Transaksi::where([['id_pembeli','=',$id],['status','=','cart']])->with('detailTransaksi', 'detailTransaksi.produk')->get();
+      return $this->jsonResponse('SUCCESS_GET', 'OK', $detailTransaksi);
     }
 
     public function insertDetail($id, Request $request){

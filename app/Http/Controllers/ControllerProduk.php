@@ -67,9 +67,10 @@ class ControllerProduk extends BaseResController
 
     public function updateImage(Request $request, $id)
     {
+
       $fileName = $id.'.'.$request->file('image')->guessExtension();
       $request->file('image')->move(public_path('/imageProduct'),$fileName);
-      $produk::find($id);
+      $produk = Produk::find($id);
       $produk->image_url = $fileName;
       $produk->save();
 

@@ -10,7 +10,7 @@ use App\Produk;
 class ControllerTransaksi extends BaseResController
 {
     public function getAllVerify(){
-      $transaksi = Transaksi::where([['status','<>','cart'],['status','<>','verified']])->with('pembeli')->get();
+      $transaksi = Transaksi::where([['status','<>','cart'],['status','<>','verified']])->with('pembeli', 'pembeli.user')->get();
       return $this->jsonResponse('SUCCESS_GET', 'OK', $transaksi);
     }
 

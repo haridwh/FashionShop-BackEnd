@@ -25,7 +25,7 @@ class ControllerTransaksi extends BaseResController
     }
 
     public function getAllTransaksiByID($id){
-      $transaksi = Transaksi::where([['id_pembeli','=',$id],['status','<>','cart']])->get();
+      $transaksi = Transaksi::where([['id_pembeli','=',$id],['status','<>','cart']])->with('kurir','kurir.user')->get();
       return $this->jsonResponse('SUCCESS_GET', 'OK', $transaksi);
     }
 
@@ -94,12 +94,13 @@ class ControllerTransaksi extends BaseResController
       return $this->jsonResponse('SUCCESS_UPDATE', 'OK', null);
     }
 
-    public function arrived($id){
+    public function arrived(Request $request, $id){
       $transaksi = Transaksi::find($id);
       if ($transaksi == null) {
         return $this->jsonResponse('FAILED_UPDATE', $id.' NOT FOUND', null);
       }
       $transaksi->status = 'arrived';
+      $transaksi->id_kurir = $request->input('id_kurir');
       $transaksi->save();
       return $this->jsonResponse('SUCCESS_UPDATE', 'OK', null);
     }

@@ -19,7 +19,7 @@ class Transaksi extends Model
       return $this->hasMany('App\DetailTransaksi','id_transaksi');
     }
 
-    // public function produk(){
-    //   return $this->belongsToMany('App\Produk','detail_transaksi','id_transaksi','id_produk');
-    // }
+    public function kurir(){
+      return $this->belongsTo('App\Kurir','id_kurir');
+    }
 }

@@ -18,7 +18,6 @@ class Transaksi extends Migration
             $table->string('status');
             $table->double('total');
             $table->timestamp('waktu');
-            $table->string('struk_url');
 
 
             $table->integer('id_pembeli')->unsigned();

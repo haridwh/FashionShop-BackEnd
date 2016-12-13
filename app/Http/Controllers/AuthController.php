@@ -8,6 +8,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use App\Penjual;
 use App\Pembeli;
+use App\Kurir;
 
 class AuthController extends BaseResController
 {
@@ -23,12 +24,15 @@ class AuthController extends BaseResController
       $user = User::where('uname', $request->only('uname'))->first();
       $type = $user->type;
       $name = $user->name;
-      if ($type==1 || $type==3) {
+      if ($type==1) {
         $penjual = Penjual::where('id_user',$user->id)->first();
         $id = $penjual->id;
-      }else{
+      }else if($type==2){
         $pembeli = Pembeli::where('id_user',$user->id)->first();
         $id = $pembeli->id;
+      }else if($type==3){
+        $kurir = Kurir::where('id_user',$user->id)->first();
+        $id = $kurir->id;
       }
       return $this->jsonResponse('SUCCESS_POST','OK', ['apiKey' => $token, 'type' => $type, 'name' => $name, 'id' => $id]);
     }

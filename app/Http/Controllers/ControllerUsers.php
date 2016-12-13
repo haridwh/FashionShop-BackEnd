@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Pembeli;
 use App\Penjual;
+use App\Kurir;
 
 class ControllerUsers extends BaseResController
 {
@@ -61,6 +62,27 @@ class ControllerUsers extends BaseResController
         $penjual->id_user = $user->id;
         $penjual->save();
         if (Penjual::find($penjual->id)) {
+          return $this->jsonResponse('SUCCESS_POST','SUCCESS REGISTRATION',null);
+        }
+        return $this->jsonResponse('SUCCESS_POST','FAILED INSERT PENJUAL',null);
+      }
+      return $this->jsonResponse('SUCCESS_POST', 'FAILED INSERT USER', null);
+    }
+
+    public function registrationKurir(Request $request){
+      $user = new User();
+      $user->name = $request->input('name');
+      $user->email = $request->input('email');
+      $user->uname = $request->input('uname');
+      $user->password = bcrypt($request->input('upass'));
+      $user->type = $request->input('type');
+      $user->save();
+      if (User::find($user->id)) {
+        $kurir = new Kurir();
+        $kurir->nip = $request->input('nip');
+        $kurir->id_user = $user->id;
+        $kurir->save();
+        if (Kurir::find($kurir->id)) {
           return $this->jsonResponse('SUCCESS_POST','SUCCESS REGISTRATION',null);
         }
         return $this->jsonResponse('SUCCESS_POST','FAILED INSERT PENJUAL',null);
